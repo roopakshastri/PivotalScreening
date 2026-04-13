@@ -702,7 +702,7 @@
 <body>
 
   <!-- Header -->
-  <header class="flex items-center justify-between px-4 py-3 bg-white shadow">
+  <header class="flex items-center justify-between px-4 py-3 bg-white shadow max-w-7xl mx-auto relative z-50">
     
 
   <!-- Left: Logo + Name -->
@@ -726,10 +726,13 @@
   </div>
 
 </header>
-  <div id="mobile-menu" class="hidden flex-col space-y-4 px-4 py-4 bg-white shadow md:hidden">
-  <a href="#services">Services</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
+  <div id="mobile-menu" 
+     class="hidden flex flex-col bg-white w-full absolute left-0 top-[72-px] shadow-lg border-t z-40 md:hidden transition-all duration-300">
+
+  <a href="#services" class="px-6 py-4 border-b hover:bg-gray-50">Services</a>
+  <a href="#about" class="px-6 py-4 border-b hover:bg-gray-50">About</a>
+  <a href="#contact" class="px-6 py-4 hover:bg-gray-50">Contact</a>
+
 </div>
 
   <!-- Hero -->
