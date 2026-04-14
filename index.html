@@ -16,7 +16,7 @@
       --text-dark: #0f172a;
       --text-mid: #334155;
       --text-soft: #64748b;
-      --bg-page: #f8fafc;
+      --bg-page: #eef4ff;
       --bg-card: #ffffff;
       --border: #e2e8f0;
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
@@ -28,7 +28,7 @@
 
     body {
       font-family: 'Gelasio', sans-serif;
-      background: var(--bg-page);
+      background: linear-gradient(180deg, #eef4ff 0%, #f8fafc 100%);
       color: var(--text-dark);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
@@ -45,6 +45,51 @@
     .hero p,
     .hero .btn-primary {
       font-family: 'Roboto', sans-serif;
+    }
+
+    /* ── TOP BAR ── */
+      .top-bar {
+        background: linear-gradient(90deg, #0ea5e9, #1a56db);
+        color: white;
+        font-size: 0.8rem;
+      }
+
+      .top-bar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top-left {
+        display: flex;
+        gap: 20px;
+      }
+
+      .top-right a {
+        color: white;
+        margin-left: 14px;
+        font-size: 0.9rem;
+        transition: opacity 0.2s;
+      }
+
+      .top-right a:hover {
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+      .top-bar-inner {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+
+      .top-left {
+        flex-direction: column;
+        gap: 4px;
+      }
     }
 
     /* ── HEADER ── */
@@ -345,7 +390,8 @@
     }
 
     .service-card {
-      background: var(--bg-card);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 36px 30px;
@@ -703,30 +749,51 @@
 <body>
 
   <!-- Header -->
-  <header class="flex items-center justify-between px-4 py-3 bg-white shadow max-w-7xl mx-auto relative z-50">
-    
 
-  <!-- Left: Logo + Name -->
-  <div class="flex items-center space-x-2">
-    <img src="logo.png" alt="Logo" class="h-8 w-auto">
-<span class="logo-name">Pivotal Screening</span>
+<!-- Top Info Bar -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+
+    <!-- Left -->
+    <div class="top-left">
+      <span>📧 support@pivotalscreening.com</span>
+      <span>📞 +91-9370271348</span>
+    </div>
+
+    <!-- Right -->
+    <div class="top-right">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+
   </div>
+</div>
+   
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 h-[72px]">
 
-  <!-- Right: Menu -->
-  <nav class="hidden md:flex space-x-6">
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <!-- Logo -->
+    <div class="flex items-center space-x-3">
+    <img src="logo.png" class="h-16 w-auto">
+    <span class="logo-name">Pivotal Screening</span>
+    </div>
 
-  <!-- Mobile Menu Icon -->
-  <div class="md:hidden">
-    <button onclick="toggleMenu()" class="text-2xl focus:outline-none active:scale-95 transition">
-  ☰
-</button>
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex space-x-8">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Mobile Button -->
+    <button onclick="toggleMenu()" class="md:hidden text-2xl">
+      ☰
+    </button>
+
   </div>
-
 </header>
+
   <div id="mobile-menu" 
      class="hidden flex flex-col bg-white w-full absolute left-0 top-[72px] shadow-lg border-t z-40 md:hidden transition-all duration-300">
 
@@ -823,87 +890,7 @@
 
 <div class="service-card fade-up">
   <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Identity Verification (ID Check)</h4>
-  <p>Authenticate identity documents to confirm candidate authenticity.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Employment Verification</h4>
-  <p>Validate previous employment details including role, tenure, and performance.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Employment via PF Number</h4>
-  <p>Verify employment history using provident fund records for accurate validation.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Credit Check</h4>
-  <p>Assess financial reliability and creditworthiness to support informed hiring decisions.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Police Verification</h4>
-  <p>Official police background verification to ensure candidate credibility and safety.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Education Verification</h4>
-  <p>Confirm academic qualifications directly from institutions to ensure authenticity.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Database Checks (Global / Watchlists)</h4>
-  <p>Search global databases and watchlists to identify potential risk indicators.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Address Verification</h4>
-  <p>Verify residential address through physical or digital verification methods.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Directorship Check</h4>
-  <p>Check involvement in company directorships and business affiliations.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-  </div>
-  <h4>Reference Check</h4>
-  <p>Collect professional feedback from previous employers and colleagues.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <img src="icons/court.png" alt="Court Check" class="w-6 h-6">
   </div>
   <h4>Court Record Check (Civil + Criminal)</h4>
   <p>Verify legal history across both civil and criminal court records.</p>
@@ -911,7 +898,89 @@
 
 <div class="service-card fade-up">
   <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <img src="icons/education.png" alt="Edu Check" class="w-6 h-6">
+  </div>
+  <h4>Education Verification</h4>
+  <p>Confirm academic qualifications directly from institutions to ensure authenticity.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/id.png" alt="ID Check" class="w-6 h-6">
+  </div>
+  <h4>Identity Verification (ID Check)</h4>
+  <p>Authenticate identity documents to confirm candidate authenticity.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/employment.png" alt="Emp Check" class="w-6 h-6">
+  </div>
+  <h4>Employment Verification</h4>
+  <p>Validate previous employment details including role, tenure, and performance.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/employmentpf.png" alt="PF Check" class="w-6 h-6">
+  </div>
+  <h4>Employment via PF Number</h4>
+  <p>Verify employment history using provident fund records for accurate validation.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/credit.png" alt="Credit Check" class="w-6 h-6">
+  </div>
+  <h4>Credit Check</h4>
+  <p>Assess financial reliability and creditworthiness to support informed hiring decisions.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/police.png" alt="Police Check" class="w-6 h-6">
+  </div>
+  <h4>Police Verification</h4>
+  <p>Official police background verification to ensure candidate credibility and safety.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/global database.png" alt="Database Check" class="w-6 h-6">
+  </div>
+  <h4>Database Checks (Global / Watchlists)</h4>
+  <p>Search global databases and watchlists to identify potential risk indicators.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/address check.png" alt="Address Check" class="w-6 h-6">
+  </div>
+  <h4>Address Verification</h4>
+  <p>Verify residential address through physical or digital verification methods.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/director.png" alt="DT Check" class="w-6 h-6">
+  </div>
+  <h4>Directorship Check</h4>
+  <p>Check involvement in company directorships and business affiliations.</p>
+</div>
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/refrene.png" alt="Ref Check" class="w-6 h-6">
+  </div>
+  <h4>Reference Check</h4>
+  <p>Collect professional feedback from previous employers and colleagues.</p>
+</div>
+
+
+
+<div class="service-card fade-up">
+  <div class="service-icon">
+  <img src="icons/globalv.png" alt="GlobalV Check" class="w-6 h-6">
   </div>
   <h4>Global Background Verification</h4>
   <p>Comprehensive international background screening across multiple regions.</p>
@@ -919,7 +988,7 @@
 
 <div class="service-card fade-up">
   <div class="service-icon">
-    <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20h12"/></svg>
+  <img src="icons/plicense.png" alt="License Check" class="w-6 h-6">
   </div>
   <h4>Professional License Verification</h4>
   <p>Confirms that required licenses or certifications are valid, active, and issued by authorized bodies.</p>
@@ -981,7 +1050,7 @@
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a href="https://wa.me/919370271348" target="_blank" class="whatsapp-float">
+  <a href="https://wa.me/918698480125" target="_blank" class="whatsapp-float">
     <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i>
     <span>Chat with us</span>
   </a>
@@ -1004,7 +1073,7 @@
         successMsg.style.display = 'block';
         const name = formData.get('name');
         const message = formData.get('message');
-        const whatsappURL = `https://wa.me/919370271348?text=${encodeURIComponent(`Hi, I am ${name}. ${message}`)}`;
+        const whatsappURL = `https://wa.me/918698480125?text=${encodeURIComponent(`Hi, I am ${name}. ${message}`)}`;
         setTimeout(() => window.open(whatsappURL, '_blank'), 1500);
       } else {
         alert('Something went wrong. Please try again.');
