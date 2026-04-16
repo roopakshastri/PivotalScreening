@@ -750,6 +750,17 @@
 }
 
 /* ── MOBILE FIXES ── */
+
+@media (max-width: 768px) {
+  #mobile-menu {
+    text-align: center;
+  }
+
+  #mobile-menu a {
+    display: block;
+    width: 100%;
+  }
+}
 @media (max-width: 768px) {
 
   .hero-content {
@@ -892,11 +903,11 @@
 </header>
 
   <div id="mobile-menu" 
-     class="hidden flex flex-col bg-white w-full absolute left-0 top-[72px] shadow-lg border-t z-40 md:hidden transition-all duration-300">
+  class="hidden flex flex-col bg-white w-full absolute left-0 top-[72px] shadow-lg border-t z-40 md:hidden text-center">
 
-  <a href="#services" class="px-6 py-4 border-b hover:bg-gray-50">Services</a>
-  <a href="#about" class="px-6 py-4 border-b hover:bg-gray-50">About</a>
-  <a href="#contact" class="px-6 py-4 hover:bg-gray-50">Contact</a>
+  <a href="#services" class="px-6 py-4 border-b text-lg font-semibold hover:bg-gray-50">Services</a>
+<a href="#about" class="px-6 py-4 border-b text-lg font-semibold hover:bg-gray-50">About</a>
+<a href="#contact" class="px-6 py-4 text-lg font-semibold hover:bg-gray-50">Contact</a>
 
 </div>
 
