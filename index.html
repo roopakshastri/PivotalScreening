@@ -744,6 +744,101 @@
       .highlight-grid { grid-template-columns: 1fr; }
       .social-buttons { flex-direction: column; align-items: center; }
     }
+	@media (max-width: 480px) {
+  .highlight-grid { grid-template-columns: 1fr; }
+  .social-buttons { flex-direction: column; align-items: center; }
+}
+
+/* ── MOBILE FIXES ── */
+@media (max-width: 768px) {
+
+  .hero-content {
+    padding: 0 10px;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .header-inner {
+    padding: 0 1rem;
+  }
+
+  .logo-name {
+    font-size: 1.1rem;
+  }
+
+  header img {
+    height: 40px !important;
+  }
+
+  .top-left {
+    align-items: center;
+  }
+
+  .top-left a {
+    font-size: 0.75rem;
+  }
+
+}
+
+<!--Mobile Menu Fix-->
+@media (max-width: 768px) {
+  #mobile-menu a {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-primary {
+    min-width: 160px;
+  }
+
+  .btn-submit {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    padding: 28px 22px;
+  }
+}
+
+/* ── MOBILE IMPROVEMENTS ── */
+@media (max-width: 768px) {
+
+  #mobile-menu a {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .btn-primary {
+    min-width: 160px;
+  }
+
+  .btn-submit {
+    padding: 16px;
+  }
+
+  .service-card {
+    padding: 28px 22px;
+  }
+
+}
+
   </style>
 </head>
 <body>
