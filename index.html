@@ -860,6 +860,11 @@
     padding: 28px 22px;
   }
 
+  /* ADD THIS */
+  #mobile-menu:not(.hidden) {
+    display: flex;
+  }
+
 }
 
   </style>
@@ -914,8 +919,8 @@
   </div>
 </header>
 
-<div id="mobile-menu" style="display: none;" class="flex flex-col bg-white w-full fixed left-0 top-[72px] shadow-lg border-t z-50 md:hidden">
-
+<div id="mobile-menu" 
+class="hidden flex-col bg-white w-full fixed left-0 top-[72px] shadow-lg border-t z-50 md:hidden">
   <a href="#services" class="px-6 py-4 border-b text-lg font-semibold hover:bg-gray-50">Services</a>
 <a href="#about" class="px-6 py-4 border-b text-lg font-semibold hover:bg-gray-50">About</a>
 <a href="#contact" class="px-6 py-4 text-lg font-semibold hover:bg-gray-50">Contact</a>
@@ -1251,15 +1256,10 @@
       });
     });
   </script>
-  <script>
+<script>
 function toggleMenu() {
   const menu = document.getElementById("mobile-menu");
-
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
+  menu.classList.toggle("hidden");
 }
 </script>
 
