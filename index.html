@@ -9,29 +9,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --blue-primary: #1a56db;
-      --blue-dark: #1340b0;
-      --blue-light: #e8f0fe;
-      --accent: #0ea5e9;
-      --text-dark: #0f172a;
-      --text-mid: #334155;
-      --text-soft: #64748b;
-      --bg-page: #eef4ff;
-      --bg-card: #ffffff;
-      --border: #e2e8f0;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
-      --shadow-lg: 0 10px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
-    }
+  --blue-primary: #1e3a5f;
+  --blue-dark: #122440;
+  --blue-light: #eef1f7;
+  --accent: #b8972a;
+  --text-dark: #0d1b2a;
+  --text-mid: #2c3e55;
+  --text-soft: #5a6e84;
+  --bg-page: #ede8df;
+  --bg-card: #faf7f2;
+  --border: #d4cfc6;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Gelasio', sans-serif;
-      background: linear-gradient(180deg, #eef4ff 0%, #f8fafc 100%);
-      color: var(--text-dark);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+        font-family: 'Gelasio', sans-serif;
+  background: #f5f0e8;
+  color: var(--text-dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3, h4 {
@@ -49,9 +49,9 @@
 
     /* ── TOP BAR ── */
       .top-bar {
-        background: linear-gradient(90deg, #0ea5e9, #1a56db);
-        color: white;
-        font-size: 0.8rem;
+        background: linear-gradient(90deg, #122440, #1e3a5f);
+  color: white;
+  font-size: 0.8rem;
       }
 
       .top-bar-inner {
@@ -97,7 +97,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.92);
+      background: rgba(245, 240, 232, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
@@ -166,11 +166,11 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #1340b0 0%, #1a56db 45%, #0ea5e9 100%);
-      position: relative;
-      overflow: hidden;
-      padding: 100px 2rem 110px;
-      text-align: center;
+        background: linear-gradient(135deg, #0d1b2a 0%, #1e3a5f 50%, #2a5298 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 2rem 110px;
+  text-align: center;
     }
 
     .hero::before {
@@ -202,16 +202,16 @@
 
     .hero-eyebrow {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e8c96a;
+  background: rgba(184, 151, 42, 0.15);
+  border: 1px solid rgba(184, 151, 42, 0.35);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
     }
 
     .hero h2 {
@@ -230,23 +230,23 @@
     }
 
     .btn-primary {
-      display: inline-block;
-      background: #fff;
-      color: var(--blue-primary);
-      font-family: 'Gelasio', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 14px 36px;
-      border-radius: 100px;
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      transition: transform 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.01em;
+    display: inline-block;
+  background: #b8972a;
+  color: #fff;
+  font-family: 'Gelasio', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 14px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(184, 151, 42, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 32px rgba(184, 151, 42, 0.5);
     }
 
     /* ── SECTION BASE ── */
@@ -260,13 +260,13 @@
     }
 
     .section-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--blue-primary);
-      margin-bottom: 10px;
-    }
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b8972a;
+  margin-bottom: 10px;
+}
 
     .section-title {
       font-size: clamp(1.8rem, 3.5vw, 2.5rem);
@@ -296,7 +296,7 @@
 
     /* ── ABOUT ── */
     #about {
-      background: #fff;
+      background: #faf7f2;
     }
 
     .about-text {
@@ -319,8 +319,8 @@
     }
 
     .highlight-card {
-      background: var(--bg-page);
-      border: 1px solid var(--border);
+      background: ede8df;
+      border: 1px solid #d4cfc6;
       border-radius: 14px;
       padding: 24px 22px;
       position: relative;
@@ -330,12 +330,12 @@
 
     .highlight-card::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--blue-primary), var(--accent));
-      opacity: 0;
-      transition: opacity 0.25s;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1e3a5f, #b8972a);
+  opacity: 0;
+  transition: opacity 0.25s;
     }
 
     .highlight-card:hover {
@@ -362,25 +362,25 @@
     }
 
     .card-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--blue-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #eef1f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
 
-    .card-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--blue-primary);
-    }
+.card-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #1e3a5f;
+}
 
     /* ── SERVICES ── */
     #services {
-      background: var(--bg-page);
+      background: ede8df;
     }
 
     .services-grid {
@@ -401,14 +401,14 @@
     }
 
     .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--blue-primary), var(--accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
+     content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1e3a5f, #b8972a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
     }
 
     .service-card:hover {
@@ -421,21 +421,21 @@
     }
 
     .service-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--blue-light), #dbeafe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef1f7, #dce3ef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
 
-    .service-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--blue-primary);
-    }
+.service-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #1e3a5f;
+}
 
     .service-card h4 {
       font-size: 1.1rem;
@@ -452,7 +452,7 @@
 
     /* ── CONTACT ── */
     #contact {
-      background: #fff;
+      background: #faf7f2;
     }
 
     .contact-wrap {
@@ -473,12 +473,12 @@
     }
 
     .contact-form {
-      background: var(--bg-page);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: var(--shadow-sm);
-    }
+  background: #ede8df;
+  border: 1px solid #d4cfc6;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+}
 
     .form-group {
       margin-bottom: 20px;
@@ -497,12 +497,12 @@
     .form-group textarea {
       width: 100%;
       padding: 12px 16px;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid #d4cfc6;
       border-radius: 10px;
       font-family: 'Gelasio', sans-serif;
       font-size: 0.9rem;
       color: var(--text-dark);
-      background: #fff;
+      background: #faf7f2;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -519,19 +519,19 @@
     }
 
     .btn-submit {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--blue-primary), var(--accent));
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Gelasio', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-      letter-spacing: 0.01em;
-    }
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1e3a5f, #2a5298);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Gelasio', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.01em;
+}
 
     .btn-submit:hover {
       opacity: 0.92;
@@ -632,12 +632,12 @@
 
     /* ── DIVIDER ── */
     .section-divider {
-      width: 48px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue-primary), var(--accent));
-      border-radius: 4px;
-      margin-top: 16px;
-    }
+  width: 48px;
+  height: 4px;
+  background: linear-gradient(90deg, #1e3a5f, #b8972a);
+  border-radius: 4px;
+  margin-top: 16px;
+}
 
     .section-header.center .section-divider {
       margin: 16px auto 0;
@@ -664,8 +664,8 @@
     }
 
     .check-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+  background: #faf7f2;
+  border: 1px solid #d4cfc6;
       border-radius: 12px;
       padding: 18px 16px;
       display: flex;
@@ -682,21 +682,21 @@
     }
 
     .check-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: var(--blue-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #eef1f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
 
-    .check-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--blue-primary);
-    }
+.check-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #1e3a5f;
+}
 
     .check-card span {
       font-size: 0.875rem;
@@ -817,7 +817,6 @@
   <section id="about">
     <div class="section-inner">
       <div class="section-header center fade-up">
-        <div class="section-label">Who We Are</div>
         <h3 class="section-title">About Us</h3>
         <p class="section-sub">Reliable, secure, and efficient background verification for confident hiring.</p>
         <div class="section-divider"></div>
@@ -882,120 +881,118 @@
   <section id="services">
     <div class="section-inner">
       <div class="section-header center fade-up">
-        <div class="section-label">What We Offer</div>
         <h3 class="section-title">Our Services</h3>
         <p class="section-sub">End-to-end verification solutions tailored for every stage of the hiring process.</p>
         <div class="section-divider"></div>
       </div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/court.png" alt="Court Check" class="w-6 h-6">
-  </div>
-  <h4>Court Record Check (Civil + Criminal)</h4>
-  <p>Verify legal history across both civil and criminal court records.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/education.png" alt="Edu Check" class="w-6 h-6">
-  </div>
-  <h4>Education Verification</h4>
-  <p>Confirm academic qualifications directly from institutions to ensure authenticity.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/id.png" alt="ID Check" class="w-6 h-6">
-  </div>
-  <h4>Identity Verification (ID Check)</h4>
-  <p>Authenticate identity documents to confirm candidate authenticity.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/employment.png" alt="Emp Check" class="w-6 h-6">
-  </div>
-  <h4>Employment Verification</h4>
-  <p>Validate previous employment details including role, tenure, and performance.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/employmentpf.png" alt="PF Check" class="w-6 h-6">
-  </div>
-  <h4>Employment via PF Number</h4>
-  <p>Verify employment history using provident fund records for accurate validation.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/credit.png" alt="Credit Check" class="w-6 h-6">
-  </div>
-  <h4>Credit Check</h4>
-  <p>Assess financial reliability and creditworthiness to support informed hiring decisions.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/Police.png" alt="Police Check" class="w-6 h-6">
-  </div>
-  <h4>Police Verification</h4>
-  <p>Official police background verification to ensure candidate credibility and safety.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/global database.png" alt="Database Check" class="w-6 h-6">
-  </div>
-  <h4>Database Checks (Global / Watchlists)</h4>
-  <p>Search global databases and watchlists to identify potential risk indicators.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/address check.png" alt="Address Check" class="w-6 h-6">
-  </div>
-  <h4>Address Verification</h4>
-  <p>Verify residential address through physical or digital verification methods.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/director.png" alt="DT Check" class="w-6 h-6">
-  </div>
-  <h4>Directorship Check</h4>
-  <p>Check involvement in company directorships and business affiliations.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/refrene.png" alt="Ref Check" class="w-6 h-6">
-  </div>
-  <h4>Reference Check</h4>
-  <p>Collect professional feedback from previous employers and colleagues.</p>
-</div>
-
-
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/globalv.png" alt="GlobalV Check" class="w-6 h-6">
-  </div>
-  <h4>Global Background Verification</h4>
-  <p>Comprehensive international background screening across multiple regions.</p>
-</div>
-
-<div class="service-card fade-up">
-  <div class="service-icon">
-  <img src="icons/plicense.png" alt="License Check" class="w-6 h-6">
-  </div>
-  <h4>Professional License Verification</h4>
-  <p>Confirms that required licenses or certifications are valid, active, and issued by authorized bodies.</p>
-</div>
+ 
+      <div class="services-grid">
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/court.png" alt="Court Check" class="w-6 h-6">
+          </div>
+          <h4>Court Record Check (Civil + Criminal)</h4>
+          <p>Verify legal history across both civil and criminal court records.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/education.png" alt="Edu Check" class="w-6 h-6">
+          </div>
+          <h4>Education Verification</h4>
+          <p>Confirm academic qualifications directly from institutions to ensure authenticity.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/id.png" alt="ID Check" class="w-6 h-6">
+          </div>
+          <h4>Identity Verification (ID Check)</h4>
+          <p>Authenticate identity documents to confirm candidate authenticity.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/employment.png" alt="Emp Check" class="w-6 h-6">
+          </div>
+          <h4>Employment Verification</h4>
+          <p>Validate previous employment details including role, tenure, and performance.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/employmentpf.png" alt="PF Check" class="w-6 h-6">
+          </div>
+          <h4>Employment via PF Number</h4>
+          <p>Verify employment history using provident fund records for accurate validation.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/credit.png" alt="Credit Check" class="w-6 h-6">
+          </div>
+          <h4>Credit Check</h4>
+          <p>Assess financial reliability and creditworthiness to support informed hiring decisions.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/Police.png" alt="Police Check" class="w-6 h-6">
+          </div>
+          <h4>Police Verification</h4>
+          <p>Official police background verification to ensure candidate credibility and safety.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/global database.png" alt="Database Check" class="w-6 h-6">
+          </div>
+          <h4>Database Checks (Global / Watchlists)</h4>
+          <p>Search global databases and watchlists to identify potential risk indicators.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/address check.png" alt="Address Check" class="w-6 h-6">
+          </div>
+          <h4>Address Verification</h4>
+          <p>Verify residential address through physical or digital verification methods.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/director.png" alt="DT Check" class="w-6 h-6">
+          </div>
+          <h4>Directorship Check</h4>
+          <p>Check involvement in company directorships and business affiliations.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/refrene.png" alt="Ref Check" class="w-6 h-6">
+          </div>
+          <h4>Reference Check</h4>
+          <p>Collect professional feedback from previous employers and colleagues.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/globalv.png" alt="GlobalV Check" class="w-6 h-6">
+          </div>
+          <h4>Global Background Verification</h4>
+          <p>Comprehensive international background screening across multiple regions.</p>
+        </div>
+ 
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <img src="icons/plicense.png" alt="License Check" class="w-6 h-6">
+          </div>
+          <h4>Professional License Verification</h4>
+          <p>Confirms that required licenses or certifications are valid, active, and issued by authorized bodies.</p>
+        </div>
+ 
       </div>
-
-
     </div>
   </section>
 
@@ -1003,7 +1000,6 @@
   <section id="contact">
     <div class="section-inner">
       <div class="section-header center fade-up">
-        <div class="section-label">Get In Touch</div>
         <h3 class="section-title">Contact Us</h3>
         <p class="section-sub">Have questions or ready to get started? We'd love to hear from you.</p>
         <div class="section-divider"></div>
