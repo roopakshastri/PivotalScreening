@@ -943,6 +943,980 @@
       </section>
 
       <section id="about">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pivotal Screening | Background Verification</title>
+  <style>
+    :root {
+      --bg: #f7f8ff;
+      --bg-soft: #eef2ff;
+      --surface: rgba(255, 255, 255, 0.84);
+      --surface-strong: #ffffff;
+      --primary: #4568d6;
+      --primary-deep: #3252bc;
+      --primary-soft: #dfe8ff;
+      --accent: #7a96ff;
+      --text: #1c2650;
+      --muted: #5b6791;
+      --line: rgba(78, 106, 207, 0.16);
+      --shadow: 0 20px 60px rgba(74, 95, 176, 0.16);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(132, 155, 255, 0.32), transparent 28%),
+        radial-gradient(circle at top right, rgba(186, 205, 255, 0.34), transparent 26%),
+        linear-gradient(180deg, #fcfdff 0%, #f1f4ff 48%, #f8faff 100%);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .page-shell { overflow: hidden; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    /* ── Top info bar ── */
+    .top-bar {
+      background: linear-gradient(135deg, #3252bc, #4568d6);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 0;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.92);
+      transition: color 0.2s ease;
+    }
+
+    .top-bar a:hover { color: #fff; }
+
+    .top-bar .tb-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    /* ── Sticky header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 248, 255, 0.78);
+      border-bottom: 1px solid rgba(77, 102, 188, 0.12);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-logo {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-deep);
+      background: rgba(69, 104, 214, 0.1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: var(--surface-strong);
+      color: var(--primary-deep);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.95rem 1.5rem;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #5576f0, #3656c3);
+      box-shadow: 0 16px 30px rgba(63, 92, 196, 0.24);
+    }
+
+    .button-secondary {
+      color: var(--primary-deep);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(74, 95, 176, 0.14);
+      box-shadow: 0 10px 30px rgba(80, 100, 170, 0.1);
+    }
+
+    /* ── WhatsApp FAB ── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      font-family: "Segoe UI", sans-serif;
+      padding: 0.75rem 1.25rem 0.75rem 0.9rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 28px rgba(18, 140, 126, 0.45);
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .whatsapp-fab:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 14px 36px rgba(18, 140, 126, 0.55);
+      color: #fff;
+    }
+
+    .whatsapp-fab svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    /* ── Hero — full width, centered ── */
+    .hero { padding: 5rem 0 3.5rem; }
+
+    .hero-content {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-content h2 {
+      margin: 0 0 1.2rem;
+      font-size: clamp(2.6rem, 4vw, 4.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-content p {
+      margin: 0 0 1.8rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.8rem;
+    }
+
+    /* Panel row below headline */
+    .hero-panel-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 0;
+    }
+
+    .hero-stats {
+      display: contents;
+    }
+
+    .stat-card,
+    .panel,
+    .feature-card,
+    .service-card,
+    .step-card,
+    .compliance-card,
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid rgba(84, 104, 185, 0.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .stat-card {
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: left;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.7rem;
+      color: var(--primary-deep);
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* "Why teams choose us" panel — full width strip */
+    .hero-why-panel {
+      margin-top: 1.2rem;
+      background: var(--surface);
+      border: 1px solid rgba(84, 104, 185, 0.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-why-panel .panel-label {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+    }
+
+    .hero-why-panel .panel-title {
+      margin: 0;
+      font-size: 1.22rem;
+      line-height: 1.3;
+    }
+
+    .hero-why-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+      flex-shrink: 0;
+      max-width: 38ch;
+    }
+
+    .panel-divider {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(80, 103, 188, 0.14);
+      flex-shrink: 0;
+    }
+
+    section { padding: 2rem 0 1rem; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-heading h3 {
+      margin: 0;
+      font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p { margin: 0; max-width: 48ch; color: var(--muted); }
+
+    .features-grid,
+    .services-grid,
+    .steps-grid,
+    .compliance-grid,
+    .contact-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .features-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .feature-card,
+    .service-card,
+    .step-card,
+    .compliance-card,
+    .contact-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .feature-card:hover,
+    .service-card:hover,
+    .step-card:hover,
+    .compliance-card:hover,
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 60px rgba(62, 90, 175, 0.18);
+    }
+
+    .icon-badge {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(87, 119, 240, 0.16), rgba(119, 148, 255, 0.24));
+      color: var(--primary-deep);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h4,
+    .service-card h4,
+    .step-card h4,
+    .compliance-card h4,
+    .contact-card h4 { margin: 0 0 0.6rem; font-size: 1.18rem; }
+
+    .feature-card p,
+    .service-card p,
+    .step-card p,
+    .compliance-card p,
+    .contact-card p { margin: 0; color: var(--muted); }
+
+    .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .service-card { position: relative; overflow: hidden; }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -38% auto;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(115, 144, 255, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .steps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .step-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background: var(--primary-soft);
+      color: var(--primary-deep);
+      font-weight: 800;
+    }
+
+    .compliance-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .contact-grid { grid-template-columns: 1.05fr 0.95fr; }
+
+    /* ── Contact info links ── */
+    .contact-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .contact-info-list li a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(69,104,214,0.12);
+      border-radius: 14px;
+      color: var(--primary-deep);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-info-list li a:hover {
+      background: rgba(255,255,255,0.97);
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(69,104,214,0.12);
+    }
+
+    .ci-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .ci-phone { background: #e0ecff; }
+    .ci-email { background: #fde8ff; }
+    .ci-wa    { background: #e0fdef; }
+    .ci-li    { background: #e0eeff; }
+
+    .ci-icon svg { width: 17px; height: 17px; }
+
+    .contact-hours {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-form { display: grid; gap: 0.95rem; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.95rem;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(79, 102, 186, 0.16);
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(69, 104, 214, 0.45);
+      box-shadow: 0 0 0 4px rgba(98, 124, 214, 0.12);
+    }
+
+    .contact-form textarea { min-height: 140px; resize: vertical; }
+
+    /* ── Footer ── */
+    .footer { padding: 2rem 0 3rem; }
+
+    .footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(80, 103, 188, 0.12);
+      box-shadow: var(--shadow);
+      border-radius: 22px;
+    }
+
+    .footer-bar p { margin: 0; color: var(--muted); }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--primary-deep);
+      font-weight: 600;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: rise 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+    .delay-4 { animation-delay: 0.32s; }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Tablet (≤ 1024px) ── */
+    @media (max-width: 1024px) {
+      .hero-panel-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero-why-panel { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .panel-divider { display: none; }
+      .contact-grid,
+      .features-grid,
+      .services-grid,
+      .steps-grid,
+      .compliance-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ── Mobile (≤ 600px) — full redesign ── */
+    @media (max-width: 600px) {
+
+      /* Spacing helpers */
+      section { padding: 2.2rem 0 0.6rem; }
+
+      /* ── FIX 1: Top bar — force single line, smaller text ── */
+      .top-bar { padding: 0.4rem 0; }
+      .top-bar-inner {
+        justify-content: center;
+        gap: 0 1rem;
+        font-size: 0.72rem;
+        flex-wrap: nowrap;        /* single line */
+        overflow: hidden;
+      }
+
+      .top-bar a {
+        gap: 0.28rem;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+
+      .top-bar .tb-icon {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+      }
+
+      /* ── Header / nav ── */
+      .nav-wrap {
+        position: relative;   /* anchor for the overlay drawer */
+        padding: 0.75rem 0;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      /* FIX 3: Bigger, more readable logo on mobile */
+      .brand-logo {
+        width: 56px;
+        height: 56px;
+      }
+
+      .brand-copy h1 {
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        margin-left: auto;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      /* FIX 2: Nav drawer as an OVERLAY — floats above content, never shifts layout */
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);   /* just below the header bar */
+        left: 0;
+        right: 0;
+        z-index: 30;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem 0.75rem 0.75rem;
+        gap: 0.25rem;
+        background: rgba(247, 248, 255, 0.97);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(69, 104, 214, 0.12);
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 16px 40px rgba(62, 90, 175, 0.14);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.72);
+        font-size: 1rem;
+        font-weight: 600;
+        border: 1px solid rgba(69, 104, 214, 0.08);
+      }
+
+      .nav-actions { display: none; }
+
+      /* ── Hero ── */
+      .hero { padding: 2.2rem 0 1.5rem; }
+
+      .hero-content { text-align: left; }
+
+      .hero-content h2 {
+        font-size: 2rem;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+        margin-bottom: 1.8rem;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 16px;
+      }
+
+      /* Stat cards: full-width stack */
+      .hero-panel-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .stat-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.2rem;
+        border-radius: 16px;
+      }
+
+      .stat-card strong {
+        font-size: 1.5rem;
+        white-space: nowrap;
+      }
+
+      .stat-card span { font-size: 0.9rem; }
+
+      /* Why panel */
+      .hero-why-panel {
+        padding: 1.2rem 1.2rem;
+        margin-top: 0.75rem;
+        border-radius: 20px;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .hero-why-panel .panel-title { font-size: 1.05rem; }
+      .hero-why-panel p { font-size: 0.92rem; max-width: 100%; }
+
+      /* ── Section headings ── */
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-heading h3 {
+        font-size: 1.6rem;
+        letter-spacing: -0.025em;
+      }
+
+      /* ── All grids → single column on mobile ── */
+      .features-grid,
+      .services-grid,
+      .steps-grid,
+      .compliance-grid,
+      .contact-grid,
+      .hero-panel-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      /* Cards */
+      .feature-card,
+      .service-card,
+      .step-card,
+      .compliance-card {
+        padding: 1.2rem;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 0.9rem;
+        align-items: start;
+      }
+
+      .feature-card .icon-badge,
+      .service-card .icon-badge,
+      .step-card .icon-badge,
+      .compliance-card .icon-badge {
+        grid-row: 1 / 3;
+        margin-bottom: 0;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+        border-radius: 12px;
+        align-self: center;
+      }
+
+      .feature-card h4,
+      .service-card h4,
+      .step-card h4,
+      .compliance-card h4 {
+        font-size: 1.05rem;
+        margin-bottom: 0.25rem;
+        align-self: end;
+      }
+
+      .feature-card p,
+      .service-card p,
+      .step-card p,
+      .compliance-card p {
+        font-size: 0.88rem;
+        grid-column: 2;
+      }
+
+      /* Step cards — keep the number style */
+      .step-card { grid-template-columns: auto 1fr; }
+
+      .step-no {
+        grid-row: 1 / 3;
+        align-self: center;
+        margin-bottom: 0;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+
+      .step-card h4 { align-self: end; margin-bottom: 0.2rem; }
+      .step-card p { grid-column: 2; }
+
+      /* ── Contact section ── */
+      .contact-grid { gap: 1rem; }
+
+      .contact-card {
+        padding: 1.3rem;
+        border-radius: 20px;
+      }
+
+      .contact-card h4 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+
+      .contact-info-list { gap: 0.5rem; margin-top: 1rem; }
+
+      .contact-info-list li a {
+        padding: 0.75rem 0.9rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+      }
+
+      /* ── Contact form ── */
+      .field-row { grid-template-columns: 1fr; gap: 0.75rem; }
+
+      .contact-form input,
+      .contact-form select,
+      .contact-form textarea {
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+        border-radius: 14px;
+      }
+
+      .contact-form textarea { min-height: 110px; }
+
+      .contact-form .button {
+        width: 100%;
+        padding: 1rem;
+        justify-content: center;
+        border-radius: 14px;
+        font-size: 1rem;
+      }
+
+      /* ── Footer ── */
+      .footer { padding: 1.2rem 0 5rem; }
+
+      .footer-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 1.2rem;
+        border-radius: 16px;
+      }
+
+      .footer-links { gap: 0.75rem; font-size: 0.92rem; }
+
+      /* ── WhatsApp FAB — keep as pill on mobile ── */
+      .whatsapp-fab {
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.88rem;
+        padding: 0.7rem 1.1rem 0.7rem 0.8rem;
+        border-radius: 999px;
+        width: auto;
+        height: auto;
+      }
+
+      .whatsapp-fab svg { width: 22px; height: 22px; }
+
+      /* Disable hover lift on touch */
+      .feature-card:hover,
+      .service-card:hover,
+      .step-card:hover,
+      .compliance-card:hover,
+      .contact-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+
+    <!-- ── Top info bar ── -->
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <a href="tel:+918698480125">
+          <svg class="tb-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+          </svg>
+          +91 86984 80125
+        </a>
+        <a href="mailto:roopakshastriwork@gmail.com?subject=Inquiry%20from%20Pivotal%20Screening%20Website">
+          <svg class="tb-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          support.pivotalscreening.com
+        </a>
+        <a href="https://www.linkedin.com/company/pivotal-screening/" target="_blank" rel="noopener noreferrer">
+          <svg class="tb-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3A2 2 0 0 1 21 5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#home">
+          <img src="logo.png" alt="Pivotal Screening logo" class="brand-logo">
+          <div class="brand-copy">
+            <h1>Pivotal Screening</h1>
+          </div>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open menu" id="menuToggle">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#compliance">Compliance</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="button button-primary" href="#contact">Request Demo</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container">
+
+          <!-- Full-width headline block -->
+          <div class="hero-content reveal">
+            <h2>Fast, polished, and trustworthy screening for confident hiring.</h2>
+            <p>
+              Pivotal Screening helps organizations verify identities, employment, education,
+              address history, criminal checks, and compliance workflows with a smooth client
+              experience designed for recruiters, HR teams, and enterprise operations.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#services">Explore Services</a>
+            </div>
+          </div>
+
+          <!-- Why teams choose us — full-width strip -->
+          <div class="hero-why-panel reveal delay-4">
+            <div>
+              <div class="panel-label">Why teams choose us</div>
+              <h3 class="panel-title">Clear reporting. Human support. Enterprise-ready delivery.</h3>
+            </div>
+            <div class="panel-divider"></div>
+            <p>Built for companies that want strong controls without creating a complicated candidate journey.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="about">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -974,6 +1948,308 @@
           </div>
         </div>
       </section>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <h3>Everything needed for dependable BGV operations.</h3>
+            </div>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card reveal">
+              <div class="icon-badge">&#x2696;&#xFE0F;</div>
+              <h4>Court Record Check</h4>
+              <p>Civil and criminal record searches across relevant jurisdictions to flag any legal history.</p>
+            </article>
+            <article class="service-card reveal delay-1">
+              <div class="icon-badge">&#x1F393;</div>
+              <h4>Education Verification</h4>
+              <p>Confirm degree authenticity, institution details, course completion, and enrollment records.</p>
+            </article>
+            <article class="service-card reveal delay-2">
+              <div class="icon-badge">&#x1F464;</div>
+              <h4>Identity Verification</h4>
+              <p>Validate government-issued IDs, personal details, and document consistency end-to-end.</p>
+            </article>
+            <article class="service-card reveal delay-3">
+              <div class="icon-badge">&#x1F3E2;</div>
+              <h4>Employment Verification</h4>
+              <p>Confirm past roles, designations, dates of employment, and exit details with prior employers.</p>
+            </article>
+            <article class="service-card reveal">
+              <div class="icon-badge">&#x1F4C4;</div>
+              <h4>Employment via PF Number</h4>
+              <p>Cross-check employment history using provident fund records for accurate tenure validation.</p>
+            </article>
+            <article class="service-card reveal delay-1">
+              <div class="icon-badge">&#x1F4B3;</div>
+              <h4>Credit Check</h4>
+              <p>Assess financial responsibility through credit bureau reports for roles involving fiscal duties.</p>
+            </article>
+            <article class="service-card reveal delay-2">
+              <div class="icon-badge">&#x1F46E;</div>
+              <h4>Police Verification</h4>
+              <p>Official police clearance to confirm no pending cases or criminal records at a local level.</p>
+            </article>
+            <article class="service-card reveal delay-3">
+              <div class="icon-badge">&#x1F310;</div>
+              <h4>Database Checks</h4>
+              <p>Screen against global sanctions lists, watchlists, and adverse media for high-risk roles.</p>
+            </article>
+            <article class="service-card reveal">
+              <div class="icon-badge">&#x1F3E0;</div>
+              <h4>Address Verification</h4>
+              <p>Physically or digitally verify current and past addresses to confirm residential history.</p>
+            </article>
+            <article class="service-card reveal delay-1">
+              <div class="icon-badge">&#x1F3DB;&#xFE0F;</div>
+              <h4>Directorship Check</h4>
+              <p>Identify company directorships held by the candidate to detect conflicts of interest.</p>
+            </article>
+            <article class="service-card reveal delay-2">
+              <div class="icon-badge">&#x1F4CB;</div>
+              <h4>Reference Check</h4>
+              <p>Structured reference interviews with prior managers or colleagues for behavioural insight.</p>
+            </article>
+            <article class="service-card reveal delay-3">
+              <div class="icon-badge">&#x2708;&#xFE0F;</div>
+              <h4>Global Background Verification</h4>
+              <p>End-to-end BGV for candidates with international work or education history across borders.</p>
+            </article>
+            <article class="service-card reveal">
+              <div class="icon-badge">&#x1F4BB;</div>
+              <h4>Professional License Verification</h4>
+              <p>Validate active licenses, certifications, and regulatory credentials relevant to the role.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <h3>A connected workflow from request to final report.</h3>
+            </div>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card reveal">
+              <div class="step-no">01</div>
+              <h4>Intake</h4>
+              <p>Collect role scope, candidate consent, and required verification package.</p>
+            </article>
+            <article class="step-card reveal delay-1">
+              <div class="step-no">02</div>
+              <h4>Validation</h4>
+              <p>Run document, identity, and source-level checks through a quality-controlled workflow.</p>
+            </article>
+            <article class="step-card reveal delay-2">
+              <div class="step-no">03</div>
+              <h4>Escalation</h4>
+              <p>Flag mismatches, collect clarifications, and maintain a transparent exception trail.</p>
+            </article>
+            <article class="step-card reveal delay-3">
+              <div class="step-no">04</div>
+              <h4>Reporting</h4>
+              <p>Deliver clean reports with summaries, statuses, and audit-friendly documentation.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="compliance">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <h3>Built around consent, traceability, and secure handling.</h3>
+            </div>
+          </div>
+
+          <div class="compliance-grid">
+            <article class="compliance-card reveal">
+              <div class="icon-badge">🔒</div>
+              <h4>Consent First</h4>
+              <p>Screening journeys start only after proper candidate authorization and documented approval flows.</p>
+            </article>
+            <article class="compliance-card reveal delay-1">
+              <div class="icon-badge">🛡</div>
+              <h4>Data Security</h4>
+              <p>Role-based access, secure transmission practices, and controlled report visibility support safe operations.</p>
+            </article>
+            <article class="compliance-card reveal delay-2">
+              <div class="icon-badge">📑</div>
+              <h4>Audit Readiness</h4>
+              <p>Structured records, timestamps, and outcome trails help teams stay prepared for internal reviews.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <h3>Let's connect your hiring team with smoother screening.</h3>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <article class="contact-card reveal">
+              <h4>Talk to Pivotal Screening</h4>
+              <p>Share your hiring volume, geography, and required checks, and we'll map the right background verification flow.</p>
+
+              <ul class="contact-info-list">
+                <li>
+                  <a href="tel:+918698480125">
+                    <span class="ci-icon ci-phone">
+                      <svg viewBox="0 0 24 24" fill="#3252bc" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                      </svg>
+                    </span>
+                    +91 8698480125
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:roopakshastriwork@gmail.com?subject=Inquiry%20from%20Pivotal%20Screening%20Website">
+                    <span class="ci-icon ci-email">
+                      <svg viewBox="0 0 24 24" fill="#a033cc" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                      </svg>
+                    </span>
+                    support@pivotalscreening.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://wa.me/918698480125" target="_blank" rel="noopener noreferrer">
+                    <span class="ci-icon ci-wa">
+                      <svg viewBox="0 0 24 24" fill="#128C7E" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 18.1c-1.49 0-2.95-.4-4.23-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.27-8.23 2.21 0 4.28.86 5.84 2.42a8.18 8.18 0 0 1 2.41 5.83c-.01 4.55-3.7 8.22-8.24 8.22zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/>
+                      </svg>
+                    </span>
+                    WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/pivotal-screening/" target="_blank" rel="noopener noreferrer">
+                    <span class="ci-icon ci-li">
+                      <svg viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3A2 2 0 0 1 21 5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                      </svg>
+                    </span>
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+              <div class="contact-hours">🕐 &nbsp;Monday – Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM</div>
+            </article>
+
+            <article class="contact-card reveal delay-1">
+              <h4>Book a Demo</h4>
+              <form class="contact-form">
+                <div class="field-row">
+                  <input type="text" placeholder="Full name">
+                  <input type="email" placeholder="Work email">
+                </div>
+                <div class="field-row">
+                  <input type="text" placeholder="Company name">
+                  <select>
+                    <option value="">Choose service</option>
+                    <option>Court Record Check (Civil + Criminal)</option>
+                    <option>Education Verification</option>
+                    <option>Identity Verification</option>
+                    <option>Employment Verification</option>
+                    <option>Employment via PF Number</option>
+                    <option>Credit Check</option>
+                    <option>Police Verification</option>
+                    <option>Database Checks (Global/Watchlists)</option>
+                    <option>Address Verification</option>
+                    <option>Directorship Check</option>
+                    <option>Reference Check</option>
+                    <option>Global Background Verification</option>
+                    <option>Professional License Verification</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <textarea placeholder="Looking to get started? Tell us your needs."></textarea>
+                <button type="button" class="button button-primary">Submit Interest</button>
+              </form>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bar">
+          <p>© 2026 Pivotal Screening.</p>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ── WhatsApp FAB ── -->
+  <a
+    class="whatsapp-fab"
+    href="https://wa.me/918698480125"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 18.1c-1.49 0-2.95-.4-4.23-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.27-8.23 2.21 0 4.28.86 5.84 2.42a8.18 8.18 0 0 1 2.41 5.83c-.01 4.55-3.7 8.22-8.24 8.22zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/>
+    </svg>
+    Chat on WhatsApp
+  </a>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("main section[id]");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navAnchors.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // Close nav when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove("open");
+      }
+    });
+
+    const setActiveLink = () => {
+      let current = "home";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 140;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navAnchors.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    };
+
+    window.addEventListener("scroll", setActiveLink);
+    window.addEventListener("load", setActiveLink);
+  </script>
+</body>
+</html>>
 
       <section id="services">
         <div class="container">
