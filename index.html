@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pivotal Screening | Background Verification</title>
+
   <style>
     :root {
       --bg: #f7f8ff;
@@ -96,7 +97,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-	  flex-wrap:nowrap;
+      flex-wrap: nowrap;
       gap: 0.5rem;
       padding: 1rem 0;
     }
@@ -105,7 +106,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-	  max-width: 60%;
+      max-width: 60%;
     }
 
     .brand-logo {
@@ -507,6 +508,8 @@
       color: var(--text);
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      font-family: inherit;
+      font-size: 1rem;
     }
 
     .contact-form input:focus,
@@ -518,22 +521,89 @@
 
     .contact-form textarea { min-height: 140px; resize: vertical; }
 
+    /* ── Form feedback states ── */
+    .form-toast {
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      animation: toastIn 0.35s ease;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-toast.success {
+      display: flex;
+      background: #e8faf0;
+      border: 1px solid #a3e6c0;
+      color: #1a7a47;
+    }
+
+    .form-toast.error {
+      display: flex;
+      background: #fff0f0;
+      border: 1px solid #f5b8b8;
+      color: #b91c1c;
+    }
+
+    .submit-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn .btn-text   { transition: opacity 0.2s; }
+    .submit-btn .btn-loader { display: none; }
+
+    .submit-btn.loading .btn-text   { opacity: 0; }
+    .submit-btn.loading .btn-loader {
+      display: flex;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .submit-btn:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
     /* ── Footer ── */
     .footer { padding: 2rem 0 3rem; }
 
     .footer-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 1rem;
       padding: 1.25rem 1.5rem;
+      text-align: center;
       background: rgba(255, 255, 255, 0.76);
       border: 1px solid rgba(80, 103, 188, 0.12);
       box-shadow: var(--shadow);
       border-radius: 22px;
     }
 
-    .footer-bar p { margin: 0; color: var(--muted); }
+    .footer-bar p { margin: 0; color: var(--muted); text-align: center; width: 100%; }
 
     .footer-links {
       display: flex;
@@ -547,17 +617,18 @@
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      animation: rise 0.8s ease forwards;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .delay-1 { animation-delay: 0.08s; }
-    .delay-2 { animation-delay: 0.16s; }
-    .delay-3 { animation-delay: 0.24s; }
-    .delay-4 { animation-delay: 0.32s; }
-
-    @keyframes rise {
-      to { opacity: 1; transform: translateY(0); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
+
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+    .delay-4 { transition-delay: 0.32s; }
 
     /* ── Tablet (≤ 1024px) ── */
     @media (max-width: 1024px) {
@@ -578,7 +649,6 @@
 
       section { padding: 2.2rem 0 0.6rem; }
 
-      /* Top bar — single line */
       .top-bar { padding: 0.4rem 0; }
       .top-bar-inner {
         justify-content: center;
@@ -601,7 +671,6 @@
         flex-shrink: 0;
       }
 
-      /* Header / nav */
       .nav-wrap {
         position: relative;
         padding: 0.75rem 0;
@@ -612,16 +681,16 @@
       .brand-logo {
         width: 150px;
         height: auto;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
       }
 
       .brand-copy h1 {
         font-size: 1.2rem;
         font-weight: 700;
-		white-space: nowrap;
+        white-space: nowrap;
       }
 
       .menu-toggle {
@@ -635,7 +704,6 @@
         flex-shrink: 0;
       }
 
-      /* Nav drawer as overlay */
       .nav-links {
         display: none;
         position: absolute;
@@ -667,7 +735,6 @@
 
       .nav-actions { display: none; }
 
-      /* Hero */
       .hero { padding: 2.2rem 0 1.5rem; }
       .hero-content { text-align: left; }
 
@@ -728,11 +795,11 @@
         gap: 0.5rem;
         margin-bottom: 1rem;
       }
-	  
-	  .section-heading h3 {
-  text-align: center;
-  width: 100%;
-}
+
+      .section-heading h3 {
+        text-align: center;
+        width: 100%;
+      }
 
       .section-heading h3 {
         font-size: 1.6rem;
@@ -846,10 +913,11 @@
 
       .footer-bar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.75rem;
         padding: 1rem 1.2rem;
         border-radius: 16px;
+        text-align: center;
       }
 
       .footer-links { gap: 0.75rem; font-size: 0.92rem; }
@@ -907,8 +975,7 @@
       <div class="container nav-wrap">
         <a class="brand" href="#home">
           <img src="logo.png" alt="Pivotal Screening logo" class="brand-logo">
-          <div class="brand-copy">
-          </div>
+          <div class="brand-copy"></div>
         </a>
 
         <button class="menu-toggle" aria-label="Open menu" id="menuToggle">☰</button>
@@ -954,19 +1021,18 @@
         </div>
       </section>
 
-<section id="about">
-  <div class="container">
-    <div class="section-heading" align="center">
-      <h3>About Us</h3>
-    </div>
-
-    <article class="feature-card">
-      <p>
-        At Pivotal Screening, we set the benchmark for excellence in background verification by combining precision, speed, and an uncompromising commitment to trust. Our approach goes beyond routine checks—we deliver intelligent, insight-driven verification solutions that empower organizations to make confident hiring decisions with absolute clarity. Built on a foundation of robust processes, advanced technology, and deep industry understanding, we ensure every verification is accurate, secure, and seamlessly executed. We prioritize both employer confidence and candidate experience, creating a system that is efficient, transparent, and reliable at every stage. Whether supporting fast-growing startups or large enterprises operating at scale, Pivotal Screening adapts effortlessly to evolving hiring needs while maintaining the highest standards of compliance and integrity. Our relentless focus on quality and innovation positions us not just as a service provider, but as a trusted partner in building stronger, safer, and more dependable workforces.
-      </p>
-    </article>
-  </div>
-</section>
+      <section id="about">
+        <div class="container">
+          <div class="section-heading" align="center">
+            <h3>About Us</h3>
+          </div>
+          <article class="feature-card">
+            <p>
+              At Pivotal Screening, we set the benchmark for excellence in background verification by combining precision, speed, and an uncompromising commitment to trust. Our approach goes beyond routine checks—we deliver intelligent, insight-driven verification solutions that empower organizations to make confident hiring decisions with absolute clarity. Built on a foundation of robust processes, advanced technology, and deep industry understanding, we ensure every verification is accurate, secure, and seamlessly executed. We prioritize both employer confidence and candidate experience, creating a system that is efficient, transparent, and reliable at every stage. Whether supporting fast-growing startups or large enterprises operating at scale, Pivotal Screening adapts effortlessly to evolving hiring needs while maintaining the highest standards of compliance and integrity. Our relentless focus on quality and innovation positions us not just as a service provider, but as a trusted partner in building stronger, safer, and more dependable workforces.
+            </p>
+          </article>
+        </div>
+      </section>
 
       <section id="services">
         <div class="container">
@@ -1165,16 +1231,21 @@
               <div class="contact-hours">🕐 &nbsp;Monday – Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM</div>
             </article>
 
+            <!-- ── Book a Demo form ── -->
             <article class="contact-card reveal delay-1">
               <h4>Book a Demo</h4>
-              <form class="contact-form">
+
+              <!-- Toast notification -->
+              <div class="form-toast" id="formToast" role="alert"></div>
+
+              <form class="contact-form" id="demoForm" novalidate>
                 <div class="field-row">
-                  <input type="text" placeholder="Full name">
-                  <input type="email" placeholder="Work email">
+                  <input type="text"  id="fullName"    name="fullName"    placeholder="Full name"     required>
+                  <input type="email" id="workEmail"   name="workEmail"   placeholder="Work email"    required>
                 </div>
                 <div class="field-row">
-                  <input type="text" placeholder="Company name">
-                  <select>
+                  <input type="text"  id="companyName" name="companyName" placeholder="Company name"  required>
+                  <select id="service" name="service" required>
                     <option value="">Choose service</option>
                     <option>Court Record Check (Civil + Criminal)</option>
                     <option>Education Verification</option>
@@ -1192,8 +1263,15 @@
                     <option>Other</option>
                   </select>
                 </div>
-                <textarea placeholder="Looking to get started? Tell us your needs."></textarea>
-                <button type="button" class="button button-primary">Submit Interest</button>
+                <textarea id="message" name="message" placeholder="Looking to get started? Tell us your needs."></textarea>
+
+                <button type="submit" class="button button-primary submit-btn" id="submitBtn">
+                  <span class="btn-text">Submit Interest</span>
+                  <span class="btn-loader" aria-hidden="true">
+                    <span class="spinner"></span>
+                    Sending…
+                  </span>
+                </button>
               </form>
             </article>
           </div>
@@ -1205,8 +1283,6 @@
       <div class="container">
         <div class="footer-bar">
           <p>© 2026 Pivotal Screening.</p>
-          <div class="footer-links">
-          </div>
         </div>
       </div>
     </footer>
@@ -1227,42 +1303,122 @@
   </a>
 
   <script>
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xaqaworo";
+
+    /* ── Nav helpers ── */
     const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+    const navLinks   = document.getElementById("navLinks");
     const navAnchors = document.querySelectorAll(".nav-links a");
-    const sections = document.querySelectorAll("main section[id]");
+    const sections   = document.querySelectorAll("main section[id]");
 
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-
-    navAnchors.forEach((link) => {
-      link.addEventListener("click", () => {
+    menuToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+    navAnchors.forEach(link => link.addEventListener("click", () => navLinks.classList.remove("open")));
+    document.addEventListener("click", e => {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target))
         navLinks.classList.remove("open");
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove("open");
-      }
     });
 
     const setActiveLink = () => {
       let current = "home";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 140;
-        if (window.scrollY >= sectionTop) {
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 140)
           current = section.getAttribute("id");
+      });
+      navAnchors.forEach(link =>
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current)
+      );
+    };
+    window.addEventListener("scroll", setActiveLink);
+    window.addEventListener("load",   setActiveLink);
+
+    /* ── Reveal on scroll using IntersectionObserver ── */
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
         }
       });
-      navAnchors.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
-      });
-    };
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
 
-    window.addEventListener("scroll", setActiveLink);
-    window.addEventListener("load", setActiveLink);
+    /* ── Demo form submission ── */
+    const demoForm  = document.getElementById("demoForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const toast     = document.getElementById("formToast");
+
+    function showToast(type, msg) {
+      toast.className = "form-toast " + type;
+      toast.innerHTML = (type === "success"
+        ? "✅ "
+        : "⚠️ ") + msg;
+      // Auto-hide success after 6 s
+      if (type === "success") {
+        setTimeout(() => { toast.className = "form-toast"; }, 6000);
+      }
+    }
+
+    function setLoading(on) {
+      submitBtn.classList.toggle("loading", on);
+      submitBtn.disabled = on;
+    }
+
+    demoForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Basic client-side validation
+      const name    = document.getElementById("fullName").value.trim();
+      const email   = document.getElementById("workEmail").value.trim();
+      const company = document.getElementById("companyName").value.trim();
+      const service = document.getElementById("service").value;
+
+      if (!name || !email || !company || !service) {
+        showToast("error", "Please fill in all required fields before submitting.");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast("error", "Please enter a valid email address.");
+        return;
+      }
+
+      setLoading(true);
+      toast.className = "form-toast"; // hide previous toast
+
+      // Build FormData — Formspree uses field names as email labels
+      const formData = new FormData();
+      formData.append("_replyto",   email);
+      formData.append("Full Name",  name);
+      formData.append("Work Email", email);
+      formData.append("Company",    company);
+      formData.append("Service",    service);
+      formData.append("Message",    document.getElementById("message").value.trim() || "—");
+      formData.append("_subject",   `Demo Request – ${name} (${company})`);
+
+      try {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method:  "POST",
+          body:    formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+          showToast("success", "Your request has been sent! We'll be in touch shortly.");
+          demoForm.reset();
+        } else {
+          const data = await response.json();
+          const errMsg = data?.errors?.map(err => err.message).join(", ") || "Submission failed.";
+          showToast("error", errMsg);
+        }
+      } catch (err) {
+        console.error("Formspree error:", err);
+        showToast("error", "Something went wrong. Please try again or reach us directly.");
+      } finally {
+        setLoading(false);
+      }
+    });
   </script>
 </body>
 </html>
